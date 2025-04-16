@@ -15,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.10'
 
       - name: Install dependencies
         run: |
@@ -25,10 +25,6 @@ jobs:
           pip install buildozer==1.5.0 Cython
           sudo apt install -y libgl1-mesa-dev
 
-      - name: Install Android SDK & NDK
-        run: |
-          yes | buildozer android
-
       - name: Cache .buildozer folder
         uses: actions/cache@v3
         with:
@@ -37,7 +33,7 @@ jobs:
 
       - name: Build APK
         run: |
-          buildozer android debug
+          yes | buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
