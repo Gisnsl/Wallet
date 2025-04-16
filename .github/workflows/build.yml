@@ -17,13 +17,13 @@ jobs:
         run: echo "date=$(date -u +'%Y%m%d')" >> $GITHUB_OUTPUT
 
       - name: Cache .buildozer_global
-        uses: actions/cache@3
+        uses: actions/cache@v3
         with:
           path: .buildozer_global
           key: buildozer-global-${{ hashFiles('buildozer.spec') }}
 
       - name: Cache .buildozer
-        uses: actions/cache@3
+        uses: actions/cache@v3
         with:
           path: .buildozer
           key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('buildozer.spec') }}
@@ -36,8 +36,8 @@ jobs:
           buildozer_version: master
 
       - name: Upload APK artifact
-        uses: actions/upload-artifact@4
+        uses: actions/upload-artifact@v4
         with:
           name: package
           path: ${{ steps.buildozer.outputs.filename }}
-          
+
